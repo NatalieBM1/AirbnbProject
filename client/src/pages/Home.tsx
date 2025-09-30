@@ -21,6 +21,9 @@ export default function Home() {
   const [location] = useLocation();
   const [currentView, setCurrentView] = useState<'grid' | 'map'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
+  const [checkInDate, setCheckInDate] = useState<string>('');
+  const [checkOutDate, setCheckOutDate] = useState<string>('');
+  const [searchGuests, setSearchGuests] = useState<number>(0);
   const [selectedProperty, setSelectedProperty] = useState<any>(null);
   const [filters, setFilters] = useState<Filters>({
     priceRange: [0, 1000],
@@ -35,23 +38,35 @@ export default function Home() {
     queryFn: () => propertyApi.getProperties(),
   });
 
-  // Get search query from URL - reactive to location changes
+  // Get all search parameters from URL - reactive to location changes
   useEffect(() => {
     const urlPart = location.split('?')[1] || '';
     const urlParams = new URLSearchParams(urlPart);
     const search = urlParams.get('search') || '';
+    const checkin = urlParams.get('checkin') || '';
+    const checkout = urlParams.get('checkout') || '';
+    const guests = urlParams.get('guests') || '';
+    
     setSearchQuery(search);
+    setCheckInDate(checkin);
+    setCheckOutDate(checkout);
+    setSearchGuests(guests ? parseInt(guests) : 0);
   }, [location]);
 
   // Filter properties based on search and filters
   const filteredProperties = data?.properties?.filter((property: any) => {
-    // Apply search filter
+    // Apply search filter (Dónde)
     if (searchQuery) {
       const searchMatch = 
         property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         property.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
         property.description.toLowerCase().includes(searchQuery.toLowerCase());
       if (!searchMatch) return false;
+    }
+
+    // Apply guests filter from search bar (Quién)
+    if (searchGuests > 0) {
+      if (property.maxGuests < searchGuests) return false;
     }
 
     // Apply property type filter
@@ -215,16 +230,71 @@ export default function Home() {
         </div>
 
         {/* Active Filters */}
-        {(searchQuery || filters.propertyType !== 'all' || filters.priceRange[1] < 1000 || 
+        {(searchQuery || checkInDate || checkOutDate || searchGuests > 0 || 
+          filters.propertyType !== 'all' || filters.priceRange[1] < 1000 || 
           filters.guests || filters.bedrooms || filters.amenities.length > 0) && (
           <div className="flex flex-wrap gap-2 mb-6">
             {searchQuery && (
               <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm flex items-center space-x-2">
-                <span>Búsqueda: "{searchQuery}"</span>
+                <span>Ubicación: "{searchQuery}"</span>
                 <button 
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => {
+                    setSearchQuery('');
+                    window.history.pushState({}, '', '/');
+                  }}
                   className="hover:bg-primary-foreground/20 rounded-full p-0.5"
                   data-testid="remove-search-filter"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </div>
+            )}
+            {checkInDate && (
+              <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                <span>Check-in: {new Date(checkInDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}</span>
+                <button 
+                  onClick={() => {
+                    setCheckInDate('');
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.delete('checkin');
+                    const newUrl = urlParams.toString() ? `/?${urlParams.toString()}` : '/';
+                    window.history.pushState({}, '', newUrl);
+                  }}
+                  className="hover:bg-primary-foreground/20 rounded-full p-0.5"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </div>
+            )}
+            {checkOutDate && (
+              <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                <span>Check-out: {new Date(checkOutDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}</span>
+                <button 
+                  onClick={() => {
+                    setCheckOutDate('');
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.delete('checkout');
+                    const newUrl = urlParams.toString() ? `/?${urlParams.toString()}` : '/';
+                    window.history.pushState({}, '', newUrl);
+                  }}
+                  className="hover:bg-primary-foreground/20 rounded-full p-0.5"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </div>
+            )}
+            {searchGuests > 0 && (
+              <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm flex items-center space-x-2">
+                <span>Huéspedes: {searchGuests}</span>
+                <button 
+                  onClick={() => {
+                    setSearchGuests(0);
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.delete('guests');
+                    const newUrl = urlParams.toString() ? `/?${urlParams.toString()}` : '/';
+                    window.history.pushState({}, '', newUrl);
+                  }}
+                  className="hover:bg-primary-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
                 </button>
@@ -295,6 +365,9 @@ export default function Home() {
               size="sm"
               onClick={() => {
                 setSearchQuery('');
+                setCheckInDate('');
+                setCheckOutDate('');
+                setSearchGuests(0);
                 setFilters({
                   priceRange: [0, 1000],
                   propertyType: 'all',
@@ -302,6 +375,7 @@ export default function Home() {
                   bedrooms: '',
                   amenities: []
                 });
+                window.history.pushState({}, '', '/');
               }}
               data-testid="clear-all-filters"
             >
