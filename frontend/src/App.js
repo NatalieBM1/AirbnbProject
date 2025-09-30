@@ -17,6 +17,7 @@ function App() {
     navigate(`/?search=${encodeURIComponent(query)}`);
   };
 
+  
   return (
     <AuthProvider>
       <div className="App">
