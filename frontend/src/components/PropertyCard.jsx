@@ -65,4 +65,5 @@ const PropertyCard = ({ property, isSelected = false, onClick }) => {
 };
 
 
+
 export default PropertyCard;
