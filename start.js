@@ -21,6 +21,7 @@ backend.on('error', (err) => {
   cleanup();
 });
 
+
 backend.on('exit', () => {
   console.log('📡 Backend exited');
   cleanup();
