@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 
+// incluyendo rango de precios, tipo de propiedad, número de huéspedes, habitaciones y amenidades.
 const FilterBar = ({ onFiltersChange }) => {
   const [activeFilters, setActiveFilters] = useState({
     priceRange: [0, 1000],
