@@ -24,6 +24,7 @@ function Router() {
     setLocation(`/?${params.toString()}`);
   };
 
+  
   return (
     <div className="min-h-screen">
       <Navbar onSearch={handleGlobalSearch} />
