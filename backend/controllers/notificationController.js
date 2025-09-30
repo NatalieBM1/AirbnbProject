@@ -99,4 +99,5 @@ module.exports = {
   markAsRead,
   createNotification,
   deleteNotification
+  
 };
