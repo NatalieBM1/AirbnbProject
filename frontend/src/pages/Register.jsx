@@ -22,7 +22,7 @@ const Register = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Clear error when user starts typing
+    
     if (error) setError('');
   };
 
@@ -31,7 +31,7 @@ const Register = () => {
     setLoading(true);
     setError('');
 
-    // Basic validation
+    
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       setLoading(false);
@@ -60,6 +60,7 @@ const Register = () => {
     }
   };
 
+  
   return (
     <div className="auth-page">
       <div className="auth-container">
