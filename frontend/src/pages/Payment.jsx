@@ -14,6 +14,7 @@ const Payment = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   
+
   const [paymentData, setPaymentData] = useState({
     paymentMethod: 'card',
     cardNumber: '',
@@ -41,6 +42,7 @@ const Payment = () => {
       setLoading(false);
     }
   };
+
 
   const handleInputChange = (e) => {
     let value = e.target.value;
@@ -72,7 +74,7 @@ const Payment = () => {
     setError('');
 
     try {
-      // Simulate payment processing
+      
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       await createPayment({

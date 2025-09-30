@@ -15,6 +15,7 @@ const PropertyDetail = () => {
     fetchProperty();
   }, [id]);
 
+  
   const fetchProperty = async () => {
     try {
       setLoading(true);
