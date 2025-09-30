@@ -19,7 +19,6 @@ let users = [
     isHost: false
   }
 ];
-
 const register = async (req, res) => {
   try {
     const { email, password, firstName, lastName, phone } = req.body;
