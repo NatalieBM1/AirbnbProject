@@ -221,4 +221,5 @@ const MapView = ({ properties, onPropertyClick, selectedProperty }) => {
   );
 };
 
+
 export default MapView;
