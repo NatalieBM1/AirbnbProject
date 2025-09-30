@@ -163,5 +163,4 @@ module.exports = {
   createProperty,
   updateProperty,
   deleteProperty
-  
 };
