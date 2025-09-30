@@ -14,6 +14,7 @@ const Notifications = () => {
     }
   }, [isAuthenticated]);
 
+
   const fetchNotifications = async () => {
     try {
       setLoading(true);
@@ -149,5 +150,6 @@ const Notifications = () => {
     </div>
   );
 };
+
 
 export default Notifications;
