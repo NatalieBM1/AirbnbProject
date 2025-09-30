@@ -136,6 +136,7 @@
     display: none;
   }
 
+  
   .line-clamp-2 {
     overflow: hidden;
     display: -webkit-box;
