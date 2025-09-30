@@ -5,6 +5,7 @@ import PropertyCard from '../components/PropertyCard';
 import FilterBar from '../components/FilterBar';
 import MapView from '../components/MapView';
 
+
 const Home = () => {
   const location = useLocation();
   const [allProperties, setAllProperties] = useState([]);
@@ -22,7 +23,6 @@ const Home = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [currentView, setCurrentView] = useState('grid'); // 'grid' or 'map'
 
-  // Get search query from URL on load
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchParam = urlParams.get('search');
@@ -35,7 +35,8 @@ const Home = () => {
     fetchProperties();
   }, []);
 
-  // Apply filters whenever properties, filters, or search query changes
+
+  
   useEffect(() => {
     applyFilters();
   }, [allProperties, filters, searchQuery]);
