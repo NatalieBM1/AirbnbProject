@@ -12,14 +12,14 @@ const Booking = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  
+  // Datos del formulario de reserva
   const [bookingData, setBookingData] = useState({
     checkIn: '',
     checkOut: '',
     guests: 1,
     specialRequests: ''
   });
-
+// Redirige a login si no está autenticado y carga la propiedad
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login', { state: { from: location } });
@@ -27,7 +27,7 @@ const Booking = () => {
     }
     fetchProperty();
   }, [propertyId, isAuthenticated]);
-
+// Obtiene la propiedad desde la API
   const fetchProperty = async () => {
     try {
       const data = await getProperty(propertyId);
