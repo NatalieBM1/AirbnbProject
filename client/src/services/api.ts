@@ -61,6 +61,7 @@ export const bookingApi = {
     return response.json();
   },
 
+  
   getBookings: async (): Promise<{ bookings: Booking[] }> => {
     const response = await fetch("/api/bookings", {
       headers: getAuthHeaders(),
