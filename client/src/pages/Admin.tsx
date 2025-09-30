@@ -47,6 +47,8 @@ export default function Admin() {
     title: "",
     description: "",
     location: "",
+    latitude: "",
+    longitude: "",
     pricePerNight: "",
     maxGuests: 1,
     bedrooms: 1,
@@ -113,6 +115,8 @@ export default function Admin() {
       title: "",
       description: "",
       location: "",
+      latitude: "",
+      longitude: "",
       pricePerNight: "",
       maxGuests: 1,
       bedrooms: 1,
@@ -129,6 +133,8 @@ export default function Admin() {
       title: property.title,
       description: property.description,
       location: property.location,
+      latitude: property.latitude || "",
+      longitude: property.longitude || "",
       pricePerNight: property.pricePerNight,
       maxGuests: property.maxGuests,
       bedrooms: property.bedrooms,
@@ -211,6 +217,32 @@ export default function Admin() {
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   placeholder="Ej: Cartagena, Bolívar"
                 />
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="latitude">Latitud</Label>
+                  <Input
+                    id="latitude"
+                    type="text"
+                    value={formData.latitude || ""}
+                    onChange={(e) => setFormData({ ...formData, latitude: e.target.value })}
+                    placeholder="10.3932"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Coordenada GPS para el mapa</p>
+                </div>
+                
+                <div>
+                  <Label htmlFor="longitude">Longitud</Label>
+                  <Input
+                    id="longitude"
+                    type="text"
+                    value={formData.longitude || ""}
+                    onChange={(e) => setFormData({ ...formData, longitude: e.target.value })}
+                    placeholder="-75.4832"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Coordenada GPS para el mapa</p>
+                </div>
               </div>
               
               <div>
