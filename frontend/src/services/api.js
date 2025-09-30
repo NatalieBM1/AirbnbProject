@@ -69,6 +69,7 @@ export const cancelBooking = async (id) => {
   return response.data;
 };
 
+
 // API de notificaciones
 export const getNotifications = async () => {
   const response = await api.get('/notifications');
