@@ -88,3 +88,4 @@ export default function FilterBar({ filters, onChange, resultsCount = 0 }: Filte
     </section>
   );
 }
+
