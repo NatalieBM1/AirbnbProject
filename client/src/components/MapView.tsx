@@ -365,3 +365,4 @@ export default function MapView({ properties, onMarkerClick, selectedPropertyId 
     </div>
   );
 }
+
