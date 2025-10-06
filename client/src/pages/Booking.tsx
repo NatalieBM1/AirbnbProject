@@ -15,6 +15,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { PriceCalculation } from "@/lib/types";
 
+
 export default function Booking() {
   const [match, params] = useRoute("/booking/:propertyId");
   const [, setLocation] = useLocation();
