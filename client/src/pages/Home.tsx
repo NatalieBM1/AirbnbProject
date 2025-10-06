@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LayoutGrid, Map, X } from "lucide-react";
 
+
 interface Filters {
   priceRange: [number, number];
   propertyType: string;
@@ -16,6 +17,7 @@ interface Filters {
   bedrooms: string;
   amenities: string[];
 }
+
 
 export default function Home() {
   const [location] = useLocation();
