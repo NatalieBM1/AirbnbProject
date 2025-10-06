@@ -13,6 +13,7 @@ import MapView from "@/components/MapView";
 import { Property } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
 
+
 interface FilterState {
   priceRange: [number, number];
   propertyTypes: string[];
