@@ -12,6 +12,7 @@ import { authApi } from "@/services/api";
 import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 
+
 export default function Register() {
   const [, setLocation] = useLocation();
   const { login } = useAuth();
