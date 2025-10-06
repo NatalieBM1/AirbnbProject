@@ -433,3 +433,4 @@ export default function Navbar({ onSearch }: NavbarProps) {
     </header>
   );
 }
+
