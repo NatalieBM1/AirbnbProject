@@ -88,3 +88,4 @@ export default function PropertyCard({ property }: PropertyCardProps) {
     </Card>
   );
 }
+
