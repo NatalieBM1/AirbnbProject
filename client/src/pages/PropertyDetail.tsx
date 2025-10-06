@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Star, Home, Waves, Wifi, Users, MapPin } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
+
 export default function PropertyDetail() {
   const [match, params] = useRoute("/property/:id");
   const propertyId = params?.id;

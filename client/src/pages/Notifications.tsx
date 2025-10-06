@@ -8,6 +8,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 
+
 const notificationIcons = {
   booking: CheckCircle,
   payment: CreditCard,
@@ -15,6 +16,7 @@ const notificationIcons = {
   message: MessageSquare,
   recommendation: Home,
 };
+
 
 const notificationStyles = {
   booking: "bg-green-100 text-green-600",
