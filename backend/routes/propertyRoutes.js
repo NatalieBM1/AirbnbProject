@@ -6,8 +6,11 @@ const {
   updateProperty, 
   deleteProperty 
 } = require('../controllers/propertyController');
+
+// Middleware de autenticación
 const authMiddleware = require('../middleware/authMiddleware');
 
+// Crear un router de Express
 const router = express.Router();
 
 // Rutas públicas
